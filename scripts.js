@@ -5,13 +5,15 @@ let computerScore = 0;
 
 function getComputerChoice() {
     const number = Math.random();
-    console.log(number)
 
     if (number <= .33) {
+        console.log("Computer: Rock")
         return "rock"
     } else if (number <= .66) {
+        console.log("Computer: Paper")
         return "paper"
     } else {
+        console.log("Computer: Scissors")
         return "scissors"
     }
 }
@@ -53,7 +55,7 @@ function playRound(humanChoice, computerChoice) {
 function playGame() {
     for (let i = 0; i < 5; i++) {
         playRound(getHumanChoice(), getComputerChoice())
-        console.log(computerScore, humanScore) 
+        console.log("Computer score:", computerScore,"Your score:", humanScore) 
     }
 }
 
