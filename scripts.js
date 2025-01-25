@@ -73,6 +73,7 @@ buttons.forEach((button) => {
 
         if (humanScore >= 5 || computerScore >= 5) {
             const winner = humanScore > computerScore? `You` : `The computer`;
+            
             const winnerDiv = document.createElement("div");
             winnerDiv.classList.add("winner");
             winnerDiv.textContent = `${winner} wins!`;
