@@ -30,40 +30,55 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        console.log("Draw")
+        return ("Draw")
     } else if (humanChoice == "rock" && computerChoice == "paper") {
-        console.log("You lose! Paper beats Rock")
         computerScore++;
+        return ("You lose! Paper beats Rock")
     } else if (humanChoice == "rock" && computerChoice == "scissors") {
-        console.log("You win! Rock beats scissors")
         humanScore++;
+        return ("You win! Rock beats scissors")
     } else if (humanChoice == "paper" && computerChoice == "scissors") {
-        console.log("You lose! Scissors beats paper")
         computerScore++;
+        return ("You lose! Scissors beats paper")
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-        console.log("You win! Paper beats rock")
         humanScore++;
+        return ("You win! Paper beats rock")
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
-        console.log("You lose! Rock beats scissors")
         computerScore++;
+        return ("You lose! Rock beats scissors")
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        console.log("You win! Scissors beats paper")
         humanScore++;
+        return ("You win! Scissors beats paper")
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice())
-        console.log("Computer score:", computerScore,"Your score:", humanScore) 
-    }
-}
 
-playGame()
+const buttons = document.querySelectorAll("button");
 
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const result = playRound(button.className, getComputerChoice())
+    
+        const body = document.querySelector("body");
 
+        const resultsDiv = document.createElement("div");
+        resultsDiv.classList.add("result")
+        resultsDiv.textContent = result;
+        body.appendChild(resultsDiv)
+    
+        const totalScore = document.createElement("div");
+        totalScore.classList.add("totalScore");
+        totalScore.textContent = `Human score: ${humanScore} | Computer score: ${computerScore}`
+        body.appendChild(totalScore);
 
-
+        if (humanScore >= 5 || computerScore >= 5) {
+            const winner = humanScore > computerScore? `You` : `The computer`;
+            const winnerDiv = document.createElement("div");
+            winnerDiv.classList.add("winner");
+            winnerDiv.textContent = `${winner} wins!`;
+            body.appendChild(winnerDiv);
+        }})
+});
 
 
 
